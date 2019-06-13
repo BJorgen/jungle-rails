@@ -12,6 +12,9 @@ Rails.application.routes.draw do
 
   resources :orders, only: [:create, :show]
   
+  resources :sessions, only: [:new, :create]
+  get '/logout' => 'sessions#destroy'
+
   resources :users, only: [:new, :create]
 
   namespace :admin do
