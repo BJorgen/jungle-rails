@@ -1,0 +1,20 @@
+<p>Thank you for ordering from Jungle! See order details below.<p>
+
+<hr>
+<h1>Order #<%= @order.id %></h1>
+<p>Email: <%= @order.email %> </p>
+<hr>
+
+<% @order.line_items.all.each do |item| %>
+  <%= render 'item', item: item %>
+<% end %>
+
+<hr>
+<h2>TOTAL: <%= @order.total_cents / 100.0 %> </h2>
+<hr>
+
+
+
+
+
+
