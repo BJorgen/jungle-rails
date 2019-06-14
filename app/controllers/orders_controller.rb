@@ -17,7 +17,6 @@ class OrdersController < ApplicationController
       redirect_to cart_path, flash: { error: order.errors.full_messages.first }
     end
     
-
   rescue Stripe::CardError => e
     redirect_to cart_path, flash: { error: e.message }
   end
