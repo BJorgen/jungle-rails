@@ -22,7 +22,7 @@
   <% if product.reviews.length == 0 %>
     <p>There are no reviews for this product.</p>
   <% else %>  
-    <% product.reviews.all.each do |review| %>
+    <% product.reviews.all.reverse.each do |review| %>
       <div>rating:<%= review.rating %><br>description: <%= review.description %><br><br></div>
     <% end %>
   <% end %>
