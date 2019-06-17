@@ -28,10 +28,16 @@
   <% if product.reviews.length == 0 %>
     <p>There are no reviews for this product.</p>
   <% else %>  
-    <% product.reviews.all.reverse.each do |review| %>
-      <div>rating:<%= review.rating %><br>description: <%= review.description %><br><br></div>
+    <% product.reviews.all.reverse.each do |r| %>
+      <div>
+        rating:<%= r.rating %><br>description: <%= r.description %>
+        <% if current_user.id == r.user_id %>
+          <br>
+          <%= button_to "Delete", product_review_url(@product, r), class: 'btn btn-sm btn-danger', method: :delete %>
+        <% end %>
+      <br><br></div>
     <% end %>
   <% end %>
   
 
-</div
+</div>

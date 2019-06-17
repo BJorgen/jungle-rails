@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
-  before_filter :deny_access, :unless => :user_logged_in?
-  
+  before_filter :user_logged_in?, :only => [:create, :destroy]
+
   def create
     @product = Product.find(params['product_id'])
     rating = params['review']['rating']
@@ -10,8 +10,15 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to '/'
     else
-      redirect_to '/products/:product_id'
+      redirect_to product_path(@product)
     end
+  end
+
+  def destroy
+    @review = Review.find(params[:id])
+    @product = Product.find(@review.product_id)
+    @review.destroy
+    redirect_to product_path(@product)
   end
 
   protected
